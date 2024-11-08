@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Login & Signup</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input class="input" type="email" id="email" placeholder="Email" required>
+    <input class="input" type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+    <button type="button" id="signupButton">Sign Up</button>
+  </form>
+  <p id="errorMessage" style="color: red;"></p>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCKvRivPINjFyE0J5yVKE-6r5_0ytPlomY",
+      authDomain: "thedex-89fe1.firebaseapp.com",
+      projectId: "thedex-89fe1",
+      storageBucket: "thedex-89fe1.firebasestorage.app",
+      messagingSenderId: "1029986111678",
+      appId: "1:1029986111678:web:d4e6bf3cf48556bc694eef",
+      measurementId: "G-BLGYKR0W1D"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent form from submitting normally
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        alert("Login successful!");
+        console.log("User logged in:", userCredential.user);
+        // Redirect or handle successful login here
+      } catch (error) {
+        document.getElementById('errorMessage').textContent = error.message;
+      }
+    });
+
+    // Handle signup button click
+    document.getElementById('signupButton').addEventListener('click', async () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        alert("Signup successful! You can now log in.");
+        console.log("User signed up:", userCredential.user);
+      } catch (error) {
+        document.getElementById('errorMessage').textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>

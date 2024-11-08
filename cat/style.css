@@ -1,0 +1,39 @@
+body{
+    background-color: black;
+}
+
+#mainbox{
+    color: white;
+    background-color: rgba(15, 15, 15, 0.845);
+    margin: auto;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    width: 80%;
+    height: 150rem;
+    text-align: left;
+
+}
+
+
+.title{
+    color: white;
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.desc{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+#image{
+    margin: 4rem;
+    width: 35rem;
+    height: 25rem;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.activistpost.com%2Fwp-content%2Fuploads%2F2016%2F04%2Fmagic-mushrooms.jpg");
+    border-radius: 2rem;
+    justify-content: center;
+
+}
